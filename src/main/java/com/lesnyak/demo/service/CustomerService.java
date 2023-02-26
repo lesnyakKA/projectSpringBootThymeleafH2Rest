@@ -6,8 +6,10 @@ import com.lesnyak.demo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -31,6 +33,14 @@ public class CustomerService {
         customerRepository.deleteById(customerId);
     }
 
+    public Customer getCustomerById (Long id) {
+        Optional<Customer> customer = customerRepository.findById(id);
+        if(customer.isPresent()) {
+            return customer.get();
+        }
+        return null;
+    }
+
     public Customer update(Customer newCustomer) {
         Optional<Customer> oldCustomer = customerRepository.findById(newCustomer.getId());
         Customer c = oldCustomer.get();
@@ -40,5 +50,11 @@ public class CustomerService {
             c.setEmail(newCustomer.getEmail());
         }
         return customerRepository.save(c);
+    }
+
+    public List<Customer> sortByName () {
+        return getAll().stream()
+                .sorted(Comparator.comparing(Customer::getFirstName))
+                .collect(Collectors.toList());
     }
 }

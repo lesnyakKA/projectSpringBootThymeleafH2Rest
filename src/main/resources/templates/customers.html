@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<a href="/add">Добавить нового пользователя</a>
+<a href="/allSort">Сорт по имени</a>
  <p th:switch="${customers}">
 <table>
      <thead>
@@ -12,6 +16,8 @@
          <th>First name</th>
          <th>Last name</th>
          <th>Email</th>
+         <th>Delete</th>
+         <th>Edit</th>
       </tr>
      </thead>
      <tbody>
@@ -19,6 +25,16 @@
          <td th:text="${customer.firstName}"></td>
          <td th:text="${customer.lastName}"></td>
          <td th:text="${customer.email}"></td>
+         <td>
+             <a th:href="@{/delete/{id}(id=${customer.id})}">
+                 <i>delete</i>
+             </a>
+         </td>
+         <td>
+             <a th:href="@{/edit/{id}(id=${customer.id})}">
+                 <i>Edit</i>
+             </a>
+         </td>
      </tr>
      </tbody>
  </table>
