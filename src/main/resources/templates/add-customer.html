@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="src/main/resources/templates/style.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<a href="/all">Общая таблица</a>
   <h3 th:if="${customer.id == null}">Add Customer</h3>
   <h3 th:if="${customer.id != null}">Edit  Customer</h3>
-  <form action=# th:action="@{/createOrUpdateCustomer}" th:object="${customer}" method="post">
-      <lable for="first-name">First Name</lable>
-      <input id="first-name" type="text" th:field="*{firstName}" placeholder="First name"/></br>
+  <div class="wrap">
+  <form class="form-db" action=# th:action="@{/createOrUpdateCustomer}" th:object="${customer}" method="post">
+      <lable class="form-label" for="first-name">First Name</lable>
+      <input class="form-input" id="first-name" type="text" th:field="*{firstName}" placeholder="First name"/></br>
 
-      <lable for="last-name">Last Name</lable>
-      <input id="last-name" type="text" th:field="*{lastName}" placeholder="Last name"/></br>
+      <lable class="form-label" for="last-name">Last Name</lable>
+      <input class="form-input" id="last-name" type="text" th:field="*{lastName}" placeholder="Last name"/></br>
 
-      <lable for="email">Email</lable>
-      <input id="email" type="text" th:field="*{email}" placeholder="Email"/></br>
+      <lable class="form-label" for="email">Email</lable>
+      <input class="form-input email" id="email" type="text" th:field="*{email}" placeholder="Email"/></br>
       <input type="hidden" id="id" th:field="*{id}">
 
       <input type="submit" value="Submit">
   </form>
+  </div>
+<a class="btn btn-primary btn-lg" href="/all">Общая таблица</a>
 </body>
 </html>

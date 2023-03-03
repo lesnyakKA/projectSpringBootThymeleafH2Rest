@@ -2,7 +2,6 @@ package com.lesnyak.demo.controller;
 
 
 import com.lesnyak.demo.entity.Customer;
-import com.lesnyak.demo.repository.CustomerRepository;
 import com.lesnyak.demo.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +22,11 @@ public class CustomerController {
     private CustomerService customerService;
 
     @Autowired
-    public CustomerController(CustomerService customerService, CustomerRepository customerRepository) {
+    public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
-    @GetMapping("/all")
+    @GetMapping({"/all", "/", "/addAllList"})
     public String getAll(Model model) {
         List<Customer> customers = customerService.getAll();
         model.addAttribute("customers", customers);

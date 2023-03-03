@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
@@ -7,31 +8,30 @@
 </head>
 <body>
 
-<a href="/add">Добавить нового пользователя</a>
-<a href="/allSort">Сорт по имени</a>
+<a class="btn btn-outline-primary" href="/add">Add new</a>
+<a class="btn btn-outline-primary" href="/allSort">Sort</a>
+<a class="btn btn-outline-primary" href="/addAllList">Add all</a>
  <p th:switch="${customers}">
-<table>
+<table class="table-success table-striped table-hover table-borderless">
      <thead>
-     <tr>
+     <tr class="table-success">
          <th>First name</th>
          <th>Last name</th>
          <th>Email</th>
-         <th>Delete</th>
-         <th>Edit</th>
       </tr>
      </thead>
      <tbody>
-     <tr th:each="customer : ${customers}">
-         <td th:text="${customer.firstName}"></td>
-         <td th:text="${customer.lastName}"></td>
-         <td th:text="${customer.email}"></td>
-         <td>
-             <a th:href="@{/delete/{id}(id=${customer.id})}">
-                 <i>delete</i>
+     <tr class="table-success" th:each="customer : ${customers}">
+         <td class="table-success" th:text="${customer.firstName}"></td>
+         <td class="table-success" th:text="${customer.lastName}"></td>
+         <td class="table-success" th:text="${customer.email}"></td>
+         <td class="table-success">
+             <a class="btn btn-outline-primary" th:href="@{/delete/{id}(id=${customer.id})}">
+                 <i>Delete</i>
              </a>
          </td>
-         <td>
-             <a th:href="@{/edit/{id}(id=${customer.id})}">
+         <td class="table-success">
+             <a class="btn btn-outline-primary" th:href="@{/edit/{id}(id=${customer.id})}">
                  <i>Edit</i>
              </a>
          </td>
